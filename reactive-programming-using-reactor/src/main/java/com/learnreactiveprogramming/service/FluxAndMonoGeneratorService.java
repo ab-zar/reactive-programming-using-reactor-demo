@@ -9,11 +9,11 @@ public class FluxAndMonoGeneratorService {
 
     public Flux<String> wordsFlux() {
         // might be coming from a db or a service call
-        return Flux.fromIterable(List.of("pizza", "burrito", "brownie", "doughnut", "pie"));
+        return Flux.fromIterable(List.of("pizza", "burrito", "brownie", "doughnut", "pie")).log();
     }
 
     public Mono<String> wordMono() {
-        return Mono.just("kebab");
+        return Mono.just("kebab").log();
     }
 
 
