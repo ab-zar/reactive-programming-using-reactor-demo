@@ -20,9 +20,21 @@ public class FluxAndMonoGeneratorServiceTest {
 
     @Test
     void testMono() {
+        //when
         var wordMono = fluxAndMonoGeneratorService.wordMono();
+        //then
         StepVerifier.create(wordMono)
                 .expectNext("kebab")
+                .verifyComplete();
+    }
+
+    @Test
+    void testFluxMap() {
+        //when
+        var wordsFlux = fluxAndMonoGeneratorService.wordsFluxMap();
+        //then
+        StepVerifier.create(wordsFlux)
+                .expectNext("PIZZA", "BURRITO", "BROWNIE", "DOUGHNUT", "PIE")
                 .verifyComplete();
     }
 }
