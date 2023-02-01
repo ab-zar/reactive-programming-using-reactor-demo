@@ -17,4 +17,12 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNextCount(3)
                 .verifyComplete();
     }
+
+    @Test
+    void testMono() {
+        var wordMono = fluxAndMonoGeneratorService.wordMono();
+        StepVerifier.create(wordMono)
+                .expectNext("kebab")
+                .verifyComplete();
+    }
 }
