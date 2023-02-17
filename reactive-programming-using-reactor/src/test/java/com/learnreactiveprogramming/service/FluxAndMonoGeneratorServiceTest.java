@@ -37,4 +37,17 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNext("PIZZA", "BURRITO", "BROWNIE", "DOUGHNUT", "PIE")
                 .verifyComplete();
     }
+
+    @Test
+    void testWordsFlux_immutability() {
+        //given
+        //when
+        var wordsFlux = fluxAndMonoGeneratorService.wordsFlux_immutability();
+
+        //then
+        StepVerifier.create(wordsFlux)
+                .expectNext("gyros", "echpochmak")
+                .expectNextCount(3)
+                .verifyComplete();
+    }
 }
