@@ -50,4 +50,18 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNextCount(3)
                 .verifyComplete();
     }
+
+    @Test
+    void testWordFluxFilter() {
+        //given
+
+        //when
+        var wordsFlux = fluxAndMonoGeneratorService.wordsFluxFilter(3);
+
+        //then
+        StepVerifier.create(wordsFlux)
+                .expectNext("7-burrito")
+                .expectNextCount(2)
+                .verifyComplete();
+    }
 }
