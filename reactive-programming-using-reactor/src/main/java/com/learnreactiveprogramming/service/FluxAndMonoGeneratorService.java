@@ -40,6 +40,10 @@ public class FluxAndMonoGeneratorService {
         return wordsFlux;
     }
 
+    public Mono<String> nameMono_map_filter(int stringLength) {
+        return Mono.just("alex").map(String::toUpperCase).filter(name -> name.length() > stringLength);
+    }
+
 
     public static void main(String[] args) {
         FluxAndMonoGeneratorService service = new FluxAndMonoGeneratorService();

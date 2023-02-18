@@ -64,4 +64,26 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNextCount(2)
                 .verifyComplete();
     }
+
+    @Test
+    void testNameMono_map_filter() {
+        //given
+        //when
+        var nameMono = fluxAndMonoGeneratorService.nameMono_map_filter(3);
+
+        //then
+        StepVerifier.create(nameMono)
+                .expectNext("ALEX")
+                .verifyComplete();
+
+        //when
+        var nameMonoEmpty = fluxAndMonoGeneratorService.nameMono_map_filter(4);
+
+
+        //then
+        StepVerifier.create(nameMonoEmpty)
+                .expectNextCount(0)
+                .verifyComplete();
+
+    }
 }
