@@ -39,10 +39,10 @@ public class FluxAndMonoGeneratorServiceTest {
     }
 
     @Test
-    void testWordsFlux_immutability() {
+    void testWordsFluxImmutability() {
         //given
         //when
-        var wordsFlux = fluxAndMonoGeneratorService.wordsFlux_immutability();
+        var wordsFlux = fluxAndMonoGeneratorService.wordsFluxImmutability();
 
         //then
         StepVerifier.create(wordsFlux)
@@ -66,10 +66,10 @@ public class FluxAndMonoGeneratorServiceTest {
     }
 
     @Test
-    void testNameMono_map_filter() {
+    void testNameMonoMapFilter() {
         //given
         //when
-        var nameMono = fluxAndMonoGeneratorService.nameMono_map_filter(3);
+        var nameMono = fluxAndMonoGeneratorService.nameMonoMapFilter(3);
 
         //then
         StepVerifier.create(nameMono)
@@ -77,7 +77,7 @@ public class FluxAndMonoGeneratorServiceTest {
                 .verifyComplete();
 
         //when
-        var nameMonoEmpty = fluxAndMonoGeneratorService.nameMono_map_filter(4);
+        var nameMonoEmpty = fluxAndMonoGeneratorService.nameMonoMapFilter(4);
 
 
         //then
@@ -86,4 +86,22 @@ public class FluxAndMonoGeneratorServiceTest {
                 .verifyComplete();
 
     }
+
+    @Test
+    void testWordFluxFlatMap() {
+        //given
+        var stringLength = 3;
+
+        //when
+        var charFlux = fluxAndMonoGeneratorService.wordsFluxFlatMap(stringLength);
+
+        //then
+        StepVerifier.create(charFlux)
+                .expectNext("B", "U", "R", "R", "I", "T", "O")
+                .expectNextCount("doughnut".length() + "cookie".length())
+                .verifyComplete();
+
+
+    }
+
 }
