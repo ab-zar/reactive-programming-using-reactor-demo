@@ -104,4 +104,18 @@ public class FluxAndMonoGeneratorServiceTest {
 
     }
 
+    @Test
+    void testWordFluxFlatMapAsync() {
+        //given
+        var stringLength = 3;
+
+        //when
+        var charFlux = fluxAndMonoGeneratorService.wordsFluxFlatMapAsync(stringLength);
+
+        //then
+        StepVerifier.create(charFlux)
+                .expectNextCount("burrito".length() + "doughnut".length() + "cookie".length())
+                .verifyComplete();
+    }
+
 }
